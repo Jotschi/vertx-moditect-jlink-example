@@ -297,6 +297,34 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.26.0</version>
+		        <extensions>true</extensions>
+				<executions>
+					<execution>
+						<id>create-docker-image</id>
+						<phase>package</phase>
+						<goals>
+							<goal>build</goal>
+						</goals>
+						<configuration>
+							<verbose>true</verbose>
+							<images>
+								<image>
+									<name>jotschi/vertx-helloworld</name>
+									<alias>vertx-helloworld:latest</alias>
+									<build>
+										<cleanup>true</cleanup>
+										<dockerFileDir>${project.basedir}</dockerFileDir>
+									</build>
+								</image>
+							</images>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 </project>
